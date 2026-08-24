@@ -1,0 +1,23 @@
+export const queryKeys = {
+  me: ['me'] as const,
+  overview: (lotId?: string) => ['overview', lotId ?? 'all'] as const,
+  lots: ['lots'] as const,
+  lot: (id: string) => ['lots', id] as const,
+  slots: (lotId: string) => ['slots', lotId] as const,
+  activeSessions: (params: Record<string, unknown>) => ['sessions', 'active', params] as const,
+  session: (id: string) => ['sessions', id] as const,
+  sessionHistory: (params: Record<string, unknown>) => ['sessions', 'history', params] as const,
+  activity: (params: Record<string, unknown>) => ['activity', params] as const,
+  passes: (params: Record<string, unknown>) => ['passes', params] as const,
+  expiringPasses: ['passes', 'expiring'] as const,
+  staff: ['staff'] as const,
+  currentShift: ['shifts', 'current'] as const,
+  shifts: (params: Record<string, unknown>) => ['shifts', 'list', params] as const,
+  dailyReport: (date: string | undefined, lotId?: string) =>
+    ['reports', 'daily', date ?? 'today', lotId ?? 'all'] as const,
+  trends: (days: number, lotId?: string) => ['trends', days, lotId ?? 'all'] as const,
+  peakHours: (lotId?: string) => ['peak-hours', lotId ?? 'all'] as const,
+  vehicleSearch: (q: string) => ['vehicles', 'search', q] as const,
+  notifications: ['notifications'] as const,
+  payments: (params: Record<string, unknown>) => ['payments', params] as const,
+};
