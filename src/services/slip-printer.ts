@@ -1,6 +1,6 @@
-import * as IntentLauncher from 'expo-intent-launcher';
-import * as Print from 'expo-print';
-import { Platform } from 'react-native';
+import { Linking, Platform } from 'react-native';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import RNPrint from 'react-native-print';
 import type { ParkingSession } from '@/types/models';
 import { formatDate, formatTime } from '@/utils/datetime';
 import { SlipPrintData, buildSlipEscPos, bytesToBase64 } from '@/utils/escpos';
@@ -31,14 +31,12 @@ function slipData(
   };
 }
 
-const RAWBT_PACKAGE = 'ru.a402d.rawbtprinter';
-
 /**
  * Instant roll printing: sends raw ESC/POS bytes to the RawBT print service
- * (free Android app that drives Bluetooth/USB 58-80mm thermal printers).
- * The slip prints and cuts immediately — no dialogs. The intent targets the
- * RawBT package explicitly, so this throws (and returns false) when RawBT is
- * not installed instead of being swallowed by a scheme handler.
+ * (free Android app that drives Bluetooth/USB 58-80mm thermal printers) via
+ * its rawbt: URL scheme. The slip prints and cuts immediately — no dialogs.
+ * Returns false when RawBT is not installed so callers can fall back to the
+ * system print dialog.
  */
 export async function printSlipToRollPrinter(
   session: ParkingSession,
@@ -47,11 +45,9 @@ export async function printSlipToRollPrinter(
 ): Promise<boolean> {
   if (Platform.OS !== 'android') return false;
   const bytes = buildSlipEscPos(slipData(session, businessName, lotName));
+  const url = `rawbt:base64,${bytesToBase64(bytes)}`;
   try {
-    await IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
-      data: `rawbt:base64,${bytesToBase64(bytes)}`,
-      packageName: RAWBT_PACKAGE,
-    });
+    await Linking.openURL(url);
     return true;
   } catch {
     return false;
@@ -107,7 +103,7 @@ function slipHtml(
 }
 
 /**
- * Fallback: render a receipt-sized PDF ourselves (printToFileAsync honors the
+ * Fallback: render a receipt-sized PDF ourselves (the converter honors the
  * page dimensions, unlike HTML print jobs), then hand the finished file to the
  * system print dialog — thermal print services and save-as-PDF both receive a
  * roll-shaped page instead of a blank Letter sheet.
@@ -118,10 +114,13 @@ export async function printSlipViaSystemDialog(
   businessName?: string,
   lotName?: string
 ): Promise<void> {
-  const file = await Print.printToFileAsync({
+  const file = await RNHTMLtoPDF.convert({
     html: slipHtml(session, qrPngBase64, businessName, lotName),
+    fileName: 'parkline-slip',
     width: RECEIPT_WIDTH_PT,
     height: 620,
   });
-  await Print.printAsync({ uri: file.uri });
+  if (file.filePath) {
+    await RNPrint.print({ filePath: file.filePath });
+  }
 }

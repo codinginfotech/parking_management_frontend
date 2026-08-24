@@ -1,8 +1,9 @@
 /**
- * Google Sign-In wrapper. The native module is unavailable in Expo Go, so it
- * is loaded defensively — the auth screens show the Google button only when
- * `isGoogleSignInAvailable()` returns true (i.e. in a dev/production build).
+ * Google Sign-In wrapper. The native module is loaded defensively — the auth
+ * screens show the Google button only when `isGoogleSignInAvailable()` returns
+ * true (i.e. the native module linked and a web client ID is configured).
  */
+import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
 
 interface GoogleSigninModule {
   configure(options: { webClientId?: string; iosClientId?: string }): void;
@@ -24,8 +25,8 @@ try {
   googleSignin = null;
 }
 
-const webClientId = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
-const iosClientId = process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID;
+const webClientId = GOOGLE_WEB_CLIENT_ID;
+const iosClientId = GOOGLE_IOS_CLIENT_ID;
 
 export function isGoogleSignInAvailable(): boolean {
   return Boolean(googleSignin && webClientId);

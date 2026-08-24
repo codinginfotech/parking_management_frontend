@@ -1,20 +1,29 @@
-import * as Haptics from 'expo-haptics';
+import { HapticFeedbackTypes, trigger } from 'react-native-haptic-feedback';
 
-/** Fire-and-forget haptics — never let a haptic failure surface to the user. */
+const OPTIONS = { enableVibrateFallback: true, ignoreAndroidSystemSettings: false };
+
+function fire(type: keyof typeof HapticFeedbackTypes): void {
+  try {
+    trigger(type, OPTIONS);
+  } catch {
+    // Fire-and-forget haptics — never let a haptic failure surface to the user.
+  }
+}
+
 export const haptics = {
   tap(): void {
-    Haptics.selectionAsync().catch(() => {});
+    fire('selection');
   },
   success(): void {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+    fire('notificationSuccess');
   },
   warning(): void {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning).catch(() => {});
+    fire('notificationWarning');
   },
   error(): void {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
+    fire('notificationError');
   },
   impact(): void {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
+    fire('impactMedium');
   },
 };

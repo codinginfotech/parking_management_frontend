@@ -1,10 +1,10 @@
+import { API_URL } from '@env';
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import type { ApiErrorBody, ApiResponse } from '@/types/api';
 import type { AuthResult } from '@/types/models';
 import { tokenStorage } from './storage';
 
-export const API_BASE_URL =
-  process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, '') ?? 'http://localhost:4000';
+export const API_BASE_URL = (API_URL || 'http://localhost:4000').replace(/\/$/, '');
 
 export const api: AxiosInstance = axios.create({
   baseURL: `${API_BASE_URL}/api/v1`,

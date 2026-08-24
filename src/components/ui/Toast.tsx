@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { View } from 'react-native';
-import Animated, { FadeOutUp, SlideInUp } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeOutUp } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { haptics } from '@/hooks/use-haptics';
 import { radius, spacing, useTheme } from '@/theme';
@@ -66,7 +66,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       {toast ? (
         <Animated.View
           key={toast.id}
-          entering={SlideInUp.springify().damping(18)}
+          entering={FadeInDown.duration(200)}
           exiting={FadeOutUp.duration(180)}
           accessibilityLiveRegion="polite"
           style={{

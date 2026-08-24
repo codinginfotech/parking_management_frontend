@@ -1,22 +1,12 @@
 import { Platform } from 'react-native';
 
 /**
- * Gilroy is the product typeface. The five weights are bundled from
- * assets/fonts (see assets/fonts/README.md for licensing notes). If the files
- * are ever removed, set GILROY_ENABLED to false and the app falls back to
- * platform system fonts with matching weights.
+ * Gilroy is the product typeface. The five weights are bundled natively from
+ * assets/fonts (linked via react-native.config.js — see assets/fonts/README.md
+ * for licensing notes). If the files are ever removed, set GILROY_ENABLED to
+ * false and the app falls back to platform system fonts with matching weights.
  */
 export const GILROY_ENABLED = true;
-
-export const fontMap: Record<string, number> = {};
-
-Object.assign(fontMap, {
-  'Gilroy-Regular': require('../../assets/fonts/Gilroy-Regular.ttf'),
-  'Gilroy-Medium': require('../../assets/fonts/Gilroy-Medium.ttf'),
-  'Gilroy-SemiBold': require('../../assets/fonts/Gilroy-SemiBold.ttf'),
-  'Gilroy-Bold': require('../../assets/fonts/Gilroy-Bold.ttf'),
-  'Gilroy-ExtraBold': require('../../assets/fonts/Gilroy-ExtraBold.ttf'),
-});
 
 export type FontWeightToken = 'regular' | 'medium' | 'semibold' | 'bold' | 'extrabold';
 

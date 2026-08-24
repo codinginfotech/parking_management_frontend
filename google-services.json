@@ -1,0 +1,129 @@
+{
+  "project_info": {
+    "project_number": "860103639707",
+    "project_id": "hostel-64a53",
+    "storage_bucket": "hostel-64a53.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860103639707:android:f30efcb7e544947eaebc3e",
+        "android_client_info": {
+          "package_name": "com.childsafety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860103639707-cktg71eqqkr39tdp9a28mk7q01f95cqe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.childsafety",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "860103639707-p3uv1bbv615h0srf87hhtmshjbk7kh8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1xdi20oZXfIUzFZD4k7fn_GPJvTXtcMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860103639707-p3uv1bbv615h0srf87hhtmshjbk7kh8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860103639707:android:664d8a3ccce956f5aebc3e",
+        "android_client_info": {
+          "package_name": "com.hostel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860103639707-40ala4gg73h43q0i11o097hrsuslka31.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hostel",
+            "certificate_hash": "0e14b7a59be8b06d6f5fca71769ae0502c9fa15e"
+          }
+        },
+        {
+          "client_id": "860103639707-6r5qj0efv4jtk7p2qk8nnse9k27er30u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hostel",
+            "certificate_hash": "0205f4202bd5ca0c2022d0f0bd94bb8c56ea33b8"
+          }
+        },
+        {
+          "client_id": "860103639707-gf3c6gcefgvnn3eqv4p942tm39u50qgd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hostel",
+            "certificate_hash": "b3ff1a9b8dc5161f6fc9aada116c97ab90811e62"
+          }
+        },
+        {
+          "client_id": "860103639707-p3uv1bbv615h0srf87hhtmshjbk7kh8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1xdi20oZXfIUzFZD4k7fn_GPJvTXtcMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860103639707-p3uv1bbv615h0srf87hhtmshjbk7kh8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860103639707:android:8428da495aa7ce04aebc3e",
+        "android_client_info": {
+          "package_name": "com.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860103639707-p3uv1bbv615h0srf87hhtmshjbk7kh8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1xdi20oZXfIUzFZD4k7fn_GPJvTXtcMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860103639707-p3uv1bbv615h0srf87hhtmshjbk7kh8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
