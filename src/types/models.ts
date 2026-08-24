@@ -99,6 +99,7 @@ export interface ParkingSession {
   estimatedAmount?: number;
   currentAmount?: number;
   coveredByPass: boolean;
+  slipNumber?: number;
   notes?: string;
 }
 

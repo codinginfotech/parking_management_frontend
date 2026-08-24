@@ -3,7 +3,7 @@ import { X } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown, FadeInUp } from 'react-native-reanimated';
-import { PlateBadge } from '@/components/parking/PlateBadge';
+import { ParkingSlip } from '@/components/parking/ParkingSlip';
 import { PlateInput } from '@/components/parking/PlateInput';
 import { SuccessCheck } from '@/components/parking/SuccessCheck';
 import { VehicleTypeSelector } from '@/components/parking/VehicleTypeSelector';
@@ -18,14 +18,15 @@ import { useActiveLot } from '@/features/dashboard/hooks';
 import { useAvailableSlots, useVehicleEntry } from '@/features/parking/hooks';
 import { apiErrorMessage } from '@/services/api';
 import type { EntryResult } from '@/services/parking.service';
+import { useAuthStore } from '@/store/auth.store';
 import { spacing, useTheme } from '@/theme';
-import { formatDate, formatTime } from '@/utils/datetime';
 import { normalizePlate } from '@/utils/plate';
 import type { Slot, VehicleType } from '@/types/models';
 
 export default function EntryScreen() {
   const { colors } = useTheme();
   const toast = useToast();
+  const businessName = useAuthStore((state) => state.user?.business?.name);
   const { activeLot } = useActiveLot();
   const entry = useVehicleEntry();
   const slots = useAvailableSlots(activeLot?._id);
@@ -70,35 +71,32 @@ export default function EntryScreen() {
   if (result) {
     const { session, occupancy } = result;
     return (
-      <Screen contentStyle={{ flexGrow: 1, justifyContent: 'center' }}>
-        <View style={{ alignItems: 'center', gap: spacing.lg }}>
-          <SuccessCheck />
-          <Animated.View entering={FadeInUp.delay(150).duration(400)} style={{ alignItems: 'center' }}>
-            <View style={{ marginTop: spacing.lg }}>
-              <PlateBadge number={session.displayNumber} />
-            </View>
-            <AppText variant="headingM" color="textMuted" style={{ marginTop: spacing.lg }}>
+      <Screen>
+        <View style={{ alignItems: 'center', paddingTop: spacing.xl }}>
+          <SuccessCheck size={64} />
+          <Animated.View entering={FadeInUp.delay(120).duration(350)}>
+            <AppText variant="headingL" style={{ marginTop: spacing.lg }}>
               Parking started
             </AppText>
           </Animated.View>
-          <Animated.View entering={FadeIn.delay(350).duration(400)} style={{ alignItems: 'center' }}>
-            <AppText variant="numericL">{formatTime(session.entryTime)}</AppText>
-            <AppText variant="bodySmall" color="textFaint">
-              {formatDate(session.entryTime)}
-              {session.slotCode ? ` · Slot ${session.slotCode}` : ''}
-            </AppText>
-            {session.coveredByPass ? (
-              <AppText variant="bodyMedium" color="accent" style={{ marginTop: spacing.md }}>
-                Monthly pass active — no charge on exit
-              </AppText>
-            ) : null}
-            <AppText variant="bodySmall" color="textFaint" style={{ marginTop: spacing.md }}>
-              {occupancy.available} of {occupancy.capacity} spaces free
-            </AppText>
-          </Animated.View>
         </View>
-        <View style={{ marginTop: spacing.xxxl, gap: spacing.sm }}>
-          <Button title="Next vehicle" onPress={reset} />
+
+        <Animated.View
+          entering={FadeIn.delay(280).duration(450)}
+          style={{ alignItems: 'center', marginTop: spacing.xl }}
+        >
+          <ParkingSlip
+            session={session}
+            businessName={businessName}
+            lotName={activeLot?.name}
+          />
+          <AppText variant="bodySmall" color="textFaint" style={{ marginTop: spacing.lg }}>
+            {occupancy.available} of {occupancy.capacity} spaces free
+          </AppText>
+        </Animated.View>
+
+        <View style={{ marginTop: spacing.xl, gap: spacing.sm }}>
+          <Button title="Next vehicle" variant="secondary" onPress={reset} />
           <Button title="Done" variant="ghost" onPress={() => router.back()} />
         </View>
       </Screen>
