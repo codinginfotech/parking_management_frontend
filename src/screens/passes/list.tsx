@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft, Plus, Ticket } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -116,7 +116,7 @@ export default function PassesScreen() {
             <ListRow
               key={pass._id}
               title={pass.displayNumber}
-              subtitle={`${pass.holderName} Â· ${formatRupees(pass.amount)}/month`}
+              subtitle={`${pass.holderName} · ${formatRupees(pass.amount)}/month`}
               divider={index < items.length - 1}
               right={
                 <View style={{ alignItems: 'flex-end' }}>
@@ -142,16 +142,16 @@ export default function PassesScreen() {
         {selected ? (
           <View style={{ gap: spacing.sm }}>
             <AppText variant="body" color="textMuted" style={{ marginBottom: spacing.md }}>
-              {selected.holderName} Â· valid {formatDate(selected.startDate)} â€“{' '}
+              {selected.holderName} · valid {formatDate(selected.startDate)} –{' '}
               {formatDate(selected.endDate)}
             </AppText>
             <Button
-              title={`Renew 1 month Â· ${formatRupees(selected.amount)}`}
+              title={`Renew 1 month · ${formatRupees(selected.amount)}`}
               onPress={() => doRenew(1)}
               loading={renew.isPending}
             />
             <Button
-              title={`Renew 3 months Â· ${formatRupees(selected.amount * 3)}`}
+              title={`Renew 3 months · ${formatRupees(selected.amount * 3)}`}
               variant="secondary"
               onPress={() => doRenew(3)}
             />

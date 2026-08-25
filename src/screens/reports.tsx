@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -83,7 +83,7 @@ export default function ReportsScreen() {
             <AnimatedNumber
               value={daily.data.revenue}
               format="inr"
-              prefix="â‚¹"
+              prefix="₹"
               style={{ fontSize: 44, lineHeight: 52, marginTop: spacing.xs }}
             />
 
@@ -136,7 +136,7 @@ export default function ReportsScreen() {
                   data={daily.data.vehicleTypeBreakdown.map((entry) => ({
                     label: VEHICLE_TYPE_LABELS[entry.vehicleType],
                     value: entry.count,
-                    display: `${entry.count} Â· ${formatRupees(entry.revenue)}`,
+                    display: `${entry.count} · ${formatRupees(entry.revenue)}`,
                   }))}
                 />
               </>
@@ -178,7 +178,7 @@ export default function ReportsScreen() {
           <AnimatedNumber
             value={weekTotal}
             format="inr"
-            prefix="â‚¹"
+            prefix="₹"
             style={{ fontSize: 44, lineHeight: 52, marginTop: spacing.xs }}
           />
           <AppText variant="bodySmall" color="textFaint" style={{ marginTop: 2 }}>
@@ -205,7 +205,7 @@ export default function ReportsScreen() {
 
       <View style={{ marginTop: spacing.xxl, marginBottom: spacing.xl }}>
         <AppText variant="label" color="textMuted" style={{ marginBottom: spacing.lg }}>
-          Peak hours Â· last 30 days
+          Peak hours · last 30 days
         </AppText>
         {peak.isLoading ? (
           <Skeleton height={100} />

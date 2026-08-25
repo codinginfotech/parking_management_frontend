@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -84,7 +84,7 @@ export default function ShiftScreen() {
           <AnimatedNumber
             value={current.totalCollected}
             format="inr"
-            prefix="â‚¹"
+            prefix="₹"
             style={{ fontSize: 40, lineHeight: 48, marginTop: spacing.xs }}
           />
 
@@ -111,7 +111,7 @@ export default function ShiftScreen() {
           </View>
 
           <AppText variant="bodySmall" color="textFaint" style={{ marginTop: spacing.lg }}>
-            {current.sessionsStarted} entries Â· {current.sessionsClosed} exits handled
+            {current.sessionsStarted} entries · {current.sessionsClosed} exits handled
           </AppText>
 
           <Button

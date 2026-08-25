@@ -1,5 +1,4 @@
 ﻿import { router } from '@/navigation/nav';
-import { Eye, EyeOff } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -23,7 +22,6 @@ export default function LoginScreen() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   const submit = () => {
@@ -96,23 +94,9 @@ export default function LoginScreen() {
           value={password}
           onChangeText={setPassword}
           error={errors.password}
-          secureTextEntry={!showPassword}
+          secureTextEntry
           autoComplete="password"
           placeholder="Your password"
-          right={
-            <Pressable
-              onPress={() => setShowPassword((current) => !current)}
-              accessibilityRole="button"
-              accessibilityLabel={showPassword ? 'Hide password' : 'Show password'}
-              hitSlop={8}
-            >
-              {showPassword ? (
-                <EyeOff size={18} color={colors.textFaint} />
-              ) : (
-                <Eye size={18} color={colors.textFaint} />
-              )}
-            </Pressable>
-          }
         />
         <Button title="Sign in" onPress={submit} loading={login.isPending} />
 

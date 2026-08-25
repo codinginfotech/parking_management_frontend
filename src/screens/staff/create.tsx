@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft, Check } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -116,7 +116,7 @@ export default function CreateStaffScreen() {
           onChangeText={setPassword}
           error={errors.password}
           secureTextEntry
-          hint="They sign in with this â€” share it privately"
+          hint="They sign in with this — share it privately"
           placeholder="Set a password"
         />
 

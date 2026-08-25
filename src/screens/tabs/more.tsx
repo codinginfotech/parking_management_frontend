@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import {
   BarChart3,
   Bell,
@@ -107,7 +107,7 @@ export default function MoreScreen() {
       <View style={{ paddingTop: spacing.xl, paddingBottom: spacing.xl }}>
         <AppText variant="headingXL">{user.fullName}</AppText>
         <AppText variant="body" color="textMuted" style={{ marginTop: spacing.xs }}>
-          {user.business?.name ?? 'No business'} Â· {ROLE_LABELS[user.role] ?? user.role}
+          {user.business?.name ?? 'No business'} · {ROLE_LABELS[user.role] ?? user.role}
         </AppText>
       </View>
 

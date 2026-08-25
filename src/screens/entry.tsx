@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { X } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -176,7 +176,7 @@ export default function EntryScreen() {
         <TextField
           value={notes}
           onChangeText={setNotes}
-          placeholder="Helmet left with attendantâ€¦"
+          placeholder="Helmet left with attendant…"
           containerStyle={{ marginTop: spacing.lg }}
           maxLength={300}
         />

@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft, Plus, Users } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -71,7 +71,7 @@ export default function StaffScreen() {
             <ListRow
               key={member.id}
               title={member.fullName}
-              subtitle={`${ROLE_LABELS[member.role] ?? member.role} Â· ${member.email}`}
+              subtitle={`${ROLE_LABELS[member.role] ?? member.role} · ${member.email}`}
               divider={index < items.length - 1}
               right={
                 <AppText variant="bodySmall" color={member.isActive ? 'success' : 'textFaint'}>
@@ -92,8 +92,8 @@ export default function StaffScreen() {
         {selected ? (
           <View style={{ gap: spacing.sm }}>
             <AppText variant="body" color="textMuted" style={{ marginBottom: spacing.md }}>
-              {ROLE_LABELS[selected.role] ?? selected.role} Â· {selected.email}
-              {selected.phone ? ` Â· ${selected.phone}` : ''}
+              {ROLE_LABELS[selected.role] ?? selected.role} · {selected.email}
+              {selected.phone ? ` · ${selected.phone}` : ''}
             </AppText>
             <Button
               title={selected.isActive ? 'Deactivate account' : 'Reactivate account'}

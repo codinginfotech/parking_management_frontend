@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -51,8 +51,8 @@ export default function ProfileScreen() {
       </View>
 
       <AppText variant="bodySmall" color="textMuted" style={{ marginTop: spacing.sm }}>
-        {user.email} Â· {ROLE_LABELS[user.role] ?? user.role}
-        {user.authProvider === 'GOOGLE' ? ' Â· Google account' : ''}
+        {user.email} · {ROLE_LABELS[user.role] ?? user.role}
+        {user.authProvider === 'GOOGLE' ? ' · Google account' : ''}
       </AppText>
 
       <View style={{ marginTop: spacing.xxl, gap: spacing.lg }}>

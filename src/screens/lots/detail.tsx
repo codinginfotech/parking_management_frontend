@@ -1,4 +1,4 @@
-﻿import { router, useLocalSearchParams } from '@/navigation/nav';
+import { router, useLocalSearchParams } from '@/navigation/nav';
 import { ArrowLeft } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -24,12 +24,12 @@ import { spacing, useTheme } from '@/theme';
 import type { PricingRule } from '@/types/models';
 
 function pricingSummary(rule: PricingRule): string {
-  if (rule.mode === 'FLAT') return `â‚¹${rule.flatRate} flat`;
+  if (rule.mode === 'FLAT') return `₹${rule.flatRate} flat`;
   if (rule.mode === 'HOURLY')
-    return `â‚¹${rule.firstHourRate} first hr Â· â‚¹${rule.additionalHourRate}/hr after`;
+    return `₹${rule.firstHourRate} first hr · ₹${rule.additionalHourRate}/hr after`;
   const slabs = (rule.slabs ?? [])
-    .map((slab) => `${slab.uptoMinutes / 60}h â†’ â‚¹${slab.amount}`)
-    .join(' Â· ');
+    .map((slab) => `${slab.uptoMinutes / 60}h → ₹${slab.amount}`)
+    .join(' · ');
   return slabs || 'Slab pricing';
 }
 
@@ -167,7 +167,7 @@ export default function LotDetailScreen() {
                       </AppText>
                       <AppText variant="bodySmall" color="textMuted" style={{ marginTop: 2 }}>
                         {pricingSummary(rule)}
-                        {rule.dailyMax ? ` Â· max â‚¹${rule.dailyMax}/day` : ''}
+                        {rule.dailyMax ? ` · max ₹${rule.dailyMax}/day` : ''}
                       </AppText>
                     </View>
                     {index < array.length - 1 ? <Divider /> : null}
@@ -192,7 +192,7 @@ export default function LotDetailScreen() {
                     title={slot.code}
                     subtitle={
                       slot.status === 'OCCUPIED' && slot.activeSession
-                        ? `Occupied Â· ${slot.activeSession.vehicleNumber}`
+                        ? `Occupied · ${slot.activeSession.vehicleNumber}`
                         : slot.status === 'BLOCKED'
                           ? 'Blocked'
                           : 'Available'
@@ -219,7 +219,7 @@ export default function LotDetailScreen() {
                 ))}
                 {slots.data && slots.data.length === 0 ? (
                   <AppText variant="body" color="textFaint" style={{ paddingVertical: spacing.xl }}>
-                    No slots defined. Slots are optional â€” add them if you assign
+                    No slots defined. Slots are optional — add them if you assign
                     numbered spaces.
                   </AppText>
                 ) : null}
@@ -264,7 +264,7 @@ export default function LotDetailScreen() {
             />
           </View>
           <AppText variant="bodySmall" color="textFaint">
-            Creates {bulk.prefix.toUpperCase()}-{bulk.from} â€¦ {bulk.prefix.toUpperCase()}-{bulk.to}
+            Creates {bulk.prefix.toUpperCase()}-{bulk.from} … {bulk.prefix.toUpperCase()}-{bulk.to}
           </AppText>
           <Button
             title="Create slots"

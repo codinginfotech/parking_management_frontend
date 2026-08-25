@@ -8,9 +8,10 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
  */
 const config = {
   resolver: {
-    // Keep Metro's watcher/resolver out of Gradle's output directories —
+    // Keep Metro's watcher/resolver out of Gradle/CMake output directories —
+    // anywhere under an android/ folder, including inside node_modules —
     // concurrent native builds otherwise crash the file watcher on Windows.
-    blockList: /(?:android[\\/](?:app[\\/])?build[\\/])|(?:android[\\/]\.gradle[\\/])|(?:android[\\/]app[\\/]\.cxx[\\/])/,
+    blockList: /[\\/]android[\\/](?:.*[\\/])?(?:build|\.cxx|\.gradle)[\\/]/,
   },
 };
 

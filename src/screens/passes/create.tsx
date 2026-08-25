@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -104,7 +104,7 @@ export default function CreatePassScreen() {
         />
         <View style={{ flexDirection: 'row', gap: spacing.md }}>
           <TextField
-            label="Monthly amount (â‚¹)"
+            label="Monthly amount (₹)"
             value={amount}
             onChangeText={setAmount}
             keyboardType="number-pad"

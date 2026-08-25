@@ -1,5 +1,6 @@
+import { Eye, EyeOff } from 'lucide-react-native';
 import React, { forwardRef, useState } from 'react';
-import { TextInput, TextInputProps, View, ViewStyle } from 'react-native';
+import { Pressable, TextInput, TextInputProps, View, ViewStyle } from 'react-native';
 import { radius, spacing, typography, useTheme } from '@/theme';
 import { AppText } from './AppText';
 
@@ -17,8 +18,29 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(function TextFiel
 ) {
   const { colors } = useTheme();
   const [focused, setFocused] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   const borderColor = error ? colors.danger : focused ? colors.textFaint : colors.hairline;
+
+  // Secure fields get a show/hide toggle automatically unless the caller
+  // provides its own right-side accessory.
+  const showToggle = Boolean(rest.secureTextEntry) && !right;
+  const rightAccessory = showToggle ? (
+    <Pressable
+      onPress={() => setRevealed((current) => !current)}
+      accessibilityRole="button"
+      accessibilityLabel={revealed ? 'Hide password' : 'Show password'}
+      hitSlop={8}
+    >
+      {revealed ? (
+        <EyeOff size={18} color={colors.textFaint} />
+      ) : (
+        <Eye size={18} color={colors.textFaint} />
+      )}
+    </Pressable>
+  ) : (
+    right
+  );
 
   return (
     <View style={containerStyle}>
@@ -41,6 +63,7 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(function TextFiel
         <TextInput
           ref={ref}
           {...rest}
+          secureTextEntry={rest.secureTextEntry && !revealed}
           accessibilityLabel={label ?? rest.placeholder}
           placeholderTextColor={colors.textFaint}
           onFocus={(event) => {
@@ -57,7 +80,7 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(function TextFiel
             style,
           ]}
         />
-        {right}
+        {rightAccessory}
       </View>
       {error ? (
         <AppText variant="bodySmall" color="danger" style={{ marginTop: spacing.xs }}>

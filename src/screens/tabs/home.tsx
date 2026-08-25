@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ChevronDown, LogIn, LogOut } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { View } from 'react-native';
@@ -89,7 +89,7 @@ export default function HomeScreen() {
                   }}
                 />
                 <AppText variant="bodyMedium" color="textMuted">
-                  {activeLot.name} Â· Live
+                  {activeLot.name} · Live
                 </AppText>
                 {lots.length > 1 ? (
                   <ChevronDown size={15} color={colors.textFaint} />
@@ -116,7 +116,7 @@ export default function HomeScreen() {
                   vehicles inside
                 </AppText>
                 <AppText variant="bodySmall" color="textFaint" style={{ marginTop: spacing.sm }}>
-                  {activeLot.available ?? activeLot.totalCapacity} available Â·{' '}
+                  {activeLot.available ?? activeLot.totalCapacity} available ·{' '}
                   {activeLot.totalCapacity} total
                 </AppText>
               </OccupancyRing>
@@ -145,7 +145,7 @@ export default function HomeScreen() {
                 <AnimatedNumber
                   value={overview.data?.todayRevenue ?? 0}
                   format="inr"
-                  prefix="â‚¹"
+                  prefix="₹"
                   variant="numericL"
                   style={{ fontSize: 36, lineHeight: 44, marginTop: spacing.xs }}
                 />

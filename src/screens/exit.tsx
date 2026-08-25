@@ -1,4 +1,4 @@
-﻿import { router, useLocalSearchParams } from '@/navigation/nav';
+import { router, useLocalSearchParams } from '@/navigation/nav';
 import { X } from 'lucide-react-native';
 import React, { useEffect, useState } from 'react';
 import { Pressable, View } from 'react-native';
@@ -93,13 +93,13 @@ export default function ExitScreen() {
           </Animated.View>
           <Animated.View entering={FadeIn.delay(400).duration(400)} style={{ alignItems: 'center' }}>
             <AppText variant="bodySmall" color="textFaint">
-              {result.session.displayNumber} Â·{' '}
+              {result.session.displayNumber} ·{' '}
               {formatDuration(result.session.durationMinutes ?? 0)}
-              {result.session.coveredByPass ? ' Â· Monthly pass' : ''}
+              {result.session.coveredByPass ? ' · Monthly pass' : ''}
             </AppText>
             {paid ? (
               <AppText variant="bodySmall" color="textFaint" style={{ marginTop: spacing.xs }}>
-                Receipt {paid.receiptNumber} Â· {paid.method}
+                Receipt {paid.receiptNumber} · {paid.method}
               </AppText>
             ) : null}
           </Animated.View>
@@ -170,7 +170,7 @@ export default function ExitScreen() {
         <PlateBadge number={session.displayNumber} />
         <AppText variant="bodySmall" color="textMuted" style={{ marginTop: spacing.md }}>
           {session.lotName ?? ''}
-          {session.slotCode ? ` Â· Slot ${session.slotCode}` : ''}
+          {session.slotCode ? ` · Slot ${session.slotCode}` : ''}
         </AppText>
       </Animated.View>
 
@@ -203,7 +203,7 @@ export default function ExitScreen() {
           {session.coveredByPass ? (
             <>
               <AppText variant="display" style={{ marginTop: spacing.xs }}>
-                â‚¹0
+                ₹0
               </AppText>
               <AppText variant="bodyMedium" color="accent" style={{ marginTop: spacing.xs }}>
                 Covered by monthly pass
@@ -213,7 +213,7 @@ export default function ExitScreen() {
             <AnimatedNumber
               value={amount}
               format="inr"
-              prefix="â‚¹"
+              prefix="₹"
               duration={900}
               variant="numericL"
               style={{ fontSize: 46, lineHeight: 54, marginTop: spacing.xs }}

@@ -1,4 +1,4 @@
-﻿import { router } from '@/navigation/nav';
+import { router } from '@/navigation/nav';
 import { ArrowLeft } from 'lucide-react-native';
 import React from 'react';
 import { Pressable, View } from 'react-native';
@@ -41,7 +41,7 @@ export default function CreateLotScreen() {
         <AppText variant="headingXL">New parking lot</AppText>
       </View>
       <AppText variant="body" color="textMuted" style={{ marginTop: spacing.sm, marginBottom: spacing.xl }}>
-        Every enabled vehicle type needs pricing â€” exits are always billable.
+        Every enabled vehicle type needs pricing — exits are always billable.
       </AppText>
       <LotForm submitting={create.isPending} onSubmit={(payload) => create.mutate(payload)} />
     </Screen>
